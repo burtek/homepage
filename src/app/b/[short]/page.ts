@@ -1,6 +1,6 @@
 import { permanentRedirect, redirect } from 'next/navigation';
 
-import { getPostByShort } from '#content';
+import { getPostByShort, posts } from '#content';
 
 
 export default async function ShortRedirect({ params }: { params: Promise<{ short: string }> }) {
@@ -12,4 +12,8 @@ export default async function ShortRedirect({ params }: { params: Promise<{ shor
     } else {
         redirect('/blog');
     }
+}
+
+export function generateStaticParams() {
+    return posts.map(post => post.short).filter(Boolean).map(short => ({ short }));
 }
