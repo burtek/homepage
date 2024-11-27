@@ -7,6 +7,9 @@ import { getPostById, posts } from '#content';
 import { BlogPost } from './content';
 
 
+export const revalidate = false;
+export const dynamic = 'error';
+
 interface Props {
     params: Promise<{ id: string }>;
     // searchParams: Promise<Record<string, string | string[] | undefined>>;

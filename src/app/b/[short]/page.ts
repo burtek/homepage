@@ -3,6 +3,9 @@ import { permanentRedirect, redirect } from 'next/navigation';
 import { getPostByShort, posts } from '#content';
 
 
+export const revalidate = false;
+export const dynamic = 'error';
+
 export default async function ShortRedirect({ params }: { params: Promise<{ short: string }> }) {
     const { short } = await params;
     const post = getPostByShort(short);
