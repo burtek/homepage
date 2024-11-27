@@ -1,0 +1,31 @@
+$maxWidth: 1000px;
+
+.app {
+    min-height: 100vh;
+    display: grid;
+    grid-template-areas: "header" "content" "footer";
+    grid-template-columns: 100vw;
+    grid-template-rows: min-content 1fr min-content;
+    padding: 40px calc(50vw - $maxWidth/2);
+    gap: 40px;
+
+    > header {
+        @extend %appFragment;
+        grid-area: header;
+    }
+
+    > main {
+        @extend %appFragment;
+        grid-area: content;
+    }
+
+    > footer {
+        @extend %appFragment;
+        grid-area: footer;
+    }
+}
+
+%appFragment {
+    max-width: $maxWidth;
+    text-wrap: pretty;
+}

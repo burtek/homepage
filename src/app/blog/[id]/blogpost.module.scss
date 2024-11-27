@@ -1,0 +1,43 @@
+article.post {
+    article {
+        margin-bottom: .5em;
+    }
+    .title {}
+    .tags, .published {
+        margin: .5em 0;
+    }
+    article.toc, article.main {
+        a {
+            text-decoration: underline;
+        }
+        h2, h3, h4 {
+            margin-bottom: .5em;
+        }
+        ul, ol {
+            margin-left: 2em;
+            $m: .1em;
+            li {
+                margin-bottom: $m;
+                ul, ol {
+                    margin-top: $m;
+                }
+            }
+        }
+    }
+    article.main {
+        p, li {
+            text-align: justify;
+            text-wrap: wrap;
+            text-justify: inter-word;
+        }
+        p, blockquote, ul, ol {
+            margin-bottom: 1em;
+        }
+        blockquote {
+            margin-left: 3em;
+        }
+        table td {
+            padding: .1em .2em;
+        }
+    }
+}
