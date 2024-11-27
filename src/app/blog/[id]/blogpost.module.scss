@@ -6,6 +6,9 @@ article.post {
     .tags, .published {
         margin: .5em 0;
     }
+    .published a {
+        text-decoration: underline dotted #888;
+    }
     article.toc, article.main {
         a {
             text-decoration: underline;
