@@ -1,10 +1,10 @@
 import type { Post } from '#content';
 import { useMDX } from '#velite';
 
-import { formatTime } from '../../dayjs';
 import { Tags } from '../components/tag';
 
 import styles from './blogpost.module.scss';
+import { BlogPublishTime } from './published';
 
 
 export function BlogPost({ post }: { post: Post }) {
@@ -26,18 +26,7 @@ export function BlogPost({ post }: { post: Post }) {
         <article className={styles.post}>
             <h1 className={styles.title}>{post.title}</h1>
             <p className={styles.published}>
-                {'Opublikowano: '}
-                <time dateTime={post.created}>{formatTime(post.created)}</time>
-                {post.created !== post.updated && (
-                    <>
-                        {', '}
-                        <a href={`https://github.com/burtek/homepage/commits/master/src/content/posts/${post.id}`}>
-                            zaktualizowano
-                        </a>
-                        {': '}
-                        <time dateTime={post.updated}>{formatTime(post.updated)}</time>
-                    </>
-                )}
+                <BlogPublishTime post={post} />
             </p>
             <Tags
                 tags={post.tags}
