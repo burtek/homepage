@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Suspense } from 'react';
 
 import { getPostsByTag, posts } from '#content';
@@ -21,4 +22,14 @@ export default async function BlogPage({ searchParams }: Props) {
             <Blog posts={filteredPosts} />
         </Suspense>
     );
+}
+
+export async function generateMetadata(
+    { searchParams }: Props
+    // parent: ResolvingMetadata
+): Promise<Metadata> {
+    const { tag } = await searchParams;
+
+    const title = 'Blog - Dtrw.ovh';
+    return { title: tag ? `#${tag} - ${title}` : title };
 }
