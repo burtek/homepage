@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import { posts } from '#content';
+import { getPostsByTag, posts } from '#content';
 
 import { Blog } from './content';
 
@@ -12,7 +12,9 @@ interface Props {
 
 export default async function BlogPage({ searchParams }: Props) {
     const { tag } = await searchParams;
-    const filteredPosts = posts.filter(post => !tag || post.tags.includes(tag));
+    const filteredPosts = tag
+        ? getPostsByTag(tag)
+        : posts;
 
     return (
         <Suspense>

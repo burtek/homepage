@@ -19,7 +19,7 @@
       }
     ],
     "paths": {
-      "#content": ["./.velite"],
+      "#content": ["./src/velite/repository.ts"],
       "#velite": ["./src/velite/renderers.tsx"]
     }
   },

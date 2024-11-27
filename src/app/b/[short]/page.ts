@@ -1,12 +1,11 @@
-'use server';
 import { permanentRedirect, redirect } from 'next/navigation';
 
-import { posts } from '#content';
+import { getPostByShort } from '#content';
 
 
 export default async function ShortRedirect({ params }: { params: Promise<{ short: string }> }) {
     const { short } = await params;
-    const post = posts.find(p => p.short === short);
+    const post = getPostByShort(short);
 
     if (post) {
         permanentRedirect(post.permalink);
