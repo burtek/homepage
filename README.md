@@ -11,5 +11,5 @@ yarn dev
 ## Stack
 
 Base framework: NextJS
-Langauge: Typescript
+Language: Typescript
 MDX rendering: VeliteJS
