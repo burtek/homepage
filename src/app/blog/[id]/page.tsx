@@ -1,92 +1,48 @@
-'use client';
-import { useParams, useRouter } from 'next/navigation';
-import { Suspense, useEffect } from 'react';
-import { createSelector } from 'reselect';
+import type { Metadata } from 'next';
+import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 
-import type { Post } from '#content';
 import { posts } from '#content';
-import { useMDX } from '#velite';
 
-import { formatTime } from '../../dayjs';
-import { Tags } from '../components/tag';
-
-import styles from './blogpost.module.scss';
+import { BlogPost } from './content';
 
 
-const getPost = createSelector(
-    (data: Post[]) => data,
-    (_: Post[], id: string) => id,
-    (data, id) => data.find(p => p.id === id)
-);
+const getPost = (id: string) => posts.find(post => post.id === id);
 
-function BlogPost() {
-    const router = useRouter();
-    const { id } = useParams<{ id: string }>();
+interface Props {
+    params: Promise<{ id: string }>;
+    // searchParams: Promise<Record<string, string | string[] | undefined>>;
+}
 
-    const post = getPost(posts, id);
-
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    const { Content } = useMDX(post?.code);
-
-    useEffect(() => {
-        if (!post) {
-            router.push('/blog');
-        }
-    }, [post]);
-
-    function renderTocEntry(tocItem: Post['toc'][number]) {
-        return (
-            <li key={tocItem.url}>
-                <a href={tocItem.url}>
-                    {tocItem.title}
-                </a>
-                {tocItem.items.length > 0 && <ol>{tocItem.items.map(renderTocEntry)}</ol>}
-            </li>
-        );
-    }
+export default async function BlogPostPage({ params }: Props) {
+    const { id } = await params;
+    const post = getPost(id);
 
     if (!post) {
-        return null;
+        redirect('/blog');
     }
 
     return (
-        <article className={styles.post}>
-            <h1 className={styles.title}>{post.title}</h1>
-            <p className={styles.published}>
-                {'Opublikowano: '}
-                <time dateTime={post.created}>{formatTime(post.created)}</time>
-                {post.created !== post.updated && (
-                    <>
-                        {', '}
-                        <a href={`https://github.com/burtek/homepage/commits/master/src/content/posts/${post.id}`}>
-                            zaktualizowano
-                        </a>
-                        {': '}
-                        <time dateTime={post.updated}>{formatTime(post.updated)}</time>
-                    </>
-                )}
-            </p>
-            <Tags
-                tags={post.tags}
-                className={styles.tags}
-            />
-            <article className={styles.toc}>
-                <h2>Spis treści</h2>
-                <ol>
-                    {post.toc.map(renderTocEntry)}
-                </ol>
-            </article>
-            <article className={styles.main}>
-                <Content />
-            </article>
-        </article>
+        <Suspense>
+            <BlogPost post={post} />
+        </Suspense>
     );
 }
 
-export default function BlogPostPage() {
-    return (
-        <Suspense>
-            <BlogPost />
-        </Suspense>
-    );
+export async function generateMetadata(
+    { params }: Props
+    // parent: ResolvingMetadata
+): Promise<Metadata> {
+    const { id } = await params;
+    const post = getPost(id);
+
+    return {
+        title: `${post?.title} - Dtrw.ovh`,
+        description: post?.excerpt,
+        category: post?.tags[0]
+    };
+}
+
+export function generateStaticParams() {
+    return posts.map(post => ({ id: post.id }));
 }

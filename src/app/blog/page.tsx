@@ -1,41 +1,22 @@
-'use client';
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
 import { posts } from '#content';
 
-import { formatTime } from '../dayjs';
-
-import styles from './blog.module.scss';
-import { Tags } from './components/tag';
+import { Blog } from './content';
 
 
-function Blog() {
-    const searchParams = useSearchParams();
-    const tag = searchParams.get('tag');
-
-    return posts
-        .filter(post => !tag || post.tags.includes(tag))
-        .map(post => (
-            <div
-                key={post.slug}
-                className={styles.post}
-            >
-                <Link href={post.permalink}>
-                    <h2 className={styles.title}>{post.title}</h2>
-                </Link>
-                <p className={styles.date}>{formatTime(post.created)}</p>
-                <p className={styles.excerpt}>{post.excerpt}...</p>
-                <Tags tags={post.tags} />
-            </div>
-        ));
+interface Props {
+    // params: Promise<{}>;
+    searchParams: Promise<Partial<{ tag: string }>>;
 }
 
-export default function BlogPage() {
+export default async function BlogPage({ searchParams }: Props) {
+    const { tag } = await searchParams;
+    const filteredPosts = posts.filter(post => !tag || post.tags.includes(tag));
+
     return (
         <Suspense>
-            <Blog />
+            <Blog posts={filteredPosts} />
         </Suspense>
     );
 }
