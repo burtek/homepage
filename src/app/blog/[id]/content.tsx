@@ -6,6 +6,7 @@ import { Tags } from '../components/tag';
 import styles from './blogpost.module.scss';
 import * as mdxComponents from './components';
 import { BlogPublishTime } from './published';
+import { ShortLink } from './shortLink';
 
 
 export function BlogPost({ post }: { post: Post }) {
@@ -25,7 +26,10 @@ export function BlogPost({ post }: { post: Post }) {
 
     return (
         <article className={styles.post}>
-            <h1 className={styles.title}>{post.title}</h1>
+            <h1 className={styles.title}>
+                {post.title}
+                <ShortLink short={post.short} />
+            </h1>
             <p className={styles.published}>
                 <BlogPublishTime post={post} />
             </p>

@@ -8,7 +8,21 @@ article.post {
     article {
         margin-bottom: .5em;
     }
-    .title {}
+    .title {
+        .short {
+            display: inline-block;
+            margin-left: 1em;
+            font-size: small;
+            background-color: #888;
+            padding: 2px 5px;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &::before {
+                content: '/b/'
+            }
+        }
+    }
     .tags, .published {
         margin: .5em 0;
     }
