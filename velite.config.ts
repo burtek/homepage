@@ -5,6 +5,15 @@ import rehypeSlug from 'rehype-slug';
 import { defineConfig, s } from 'velite';
 
 
+// import dictionaryPl from 'dictionary-pl';
+// import remarkRetext from 'remark-retext';
+// import retextLatin from 'retext-latin';
+// import retextSpell from 'retext-spell';
+// import { unified } from 'unified';
+
+const isDev = process.argv.includes('dev');
+// const isBuild = process.argv.includes('build');
+
 const execAsync = promisify(exec);
 const timestamp = (type: 'created' | 'modified') =>
     s
@@ -19,6 +28,7 @@ const timestamp = (type: 'created' | 'modified') =>
             return date.toISOString();
         });
 
+// console.log(`Starting veliteJS${isBuild ? ' with spellchecking' : ''}`);
 export default defineConfig({
     root: 'src/content',
     collections: {
@@ -52,7 +62,16 @@ export default defineConfig({
         }
     },
     mdx: {
+        // https://github.com/zce/velite/issues/261
+        // remarkPlugins: [
+        //     [
+        //         remarkRetext,
+        //         unified()
+        //             .use(retextLatin)
+        //             .use(retextSpell, dictionaryPl)
+        //     ]
+        // ],
         rehypePlugins: [rehypeSlug],
-        development: process.argv.includes('dev')
+        development: isDev
     }
 });

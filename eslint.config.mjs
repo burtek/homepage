@@ -17,5 +17,5 @@ export default config(
         settings: { 'import/resolver': { typescript: true } }
     },
     { rules: { 'react/display-name': 'off' } },
-    { ignores: ['.velite'] }
+    { ignores: ['.velite', 'node_modules'] }
 );
