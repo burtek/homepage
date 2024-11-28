@@ -23,7 +23,7 @@ export function BlogPost({ post }: { post: Post }) {
                 <a href={tocItem.url}>
                     {tocItem.title}
                 </a>
-                {tocItem.items.length > 0 && <ol>{tocItem.items.map(renderTocEntry)}</ol>}
+                {tocItem.items.length ? <ol>{tocItem.items.map(renderTocEntry)}</ol> : null}
             </li>
         );
     }
@@ -38,14 +38,16 @@ export function BlogPost({ post }: { post: Post }) {
                 tags={post.tags}
                 className={styles.tags}
             />
-            {post.toc.length > 0 && (
-                <article className={styles.toc}>
-                    <h2>Spis treści</h2>
-                    <ol>
-                        {post.toc.map(renderTocEntry)}
-                    </ol>
-                </article>
-            )}
+            {post.tocEnabled && post.toc.length
+                ? (
+                    <article className={styles.toc}>
+                        <h2>Spis treści</h2>
+                        <ol>
+                            {post.toc.map(renderTocEntry)}
+                        </ol>
+                    </article>
+                )
+                : null}
             <article className={styles.main}>
                 <Content components={mdxComponents} />
             </article>

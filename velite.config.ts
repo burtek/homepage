@@ -30,6 +30,7 @@ export default defineConfig({
                     title: s.string(),
                     short: s.slug('posts-short').optional(),
                     tags: s.array(s.string()),
+                    tocEnabled: s.boolean().optional(),
 
                     created: timestamp('created'),
                     updated: timestamp('modified'),
@@ -41,7 +42,7 @@ export default defineConfig({
                     md: s.markdown()
                 })
                 .transform(data => {
-                    const id = data.slug.split('/').at(-1);
+                    const [id] = data.slug.split('/').reverse();
                     return {
                         ...data,
                         id,

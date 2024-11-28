@@ -6,7 +6,7 @@ export default config(
     ...await prepareConfig({
         jest: { mode: 'vitest' },
         json: { additionalFiles: { jsonc: ['tsconfig.*.json'] } },
-        react: true
+        react: { nextjs: true }
     }),
     {
         files: ['**/*.{js,jsx,ts,tsx,mts}'],
