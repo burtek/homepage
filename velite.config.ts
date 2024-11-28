@@ -51,8 +51,11 @@ export default defineConfig({
                     toc: s.toc(),
                     md: s.markdown()
                 })
-                .transform(data => {
+                .transform((data, { addIssue }) => {
                     const [id] = data.slug.split('/').reverse();
+                    if (!data.toc.length && data.tocEnabled) {
+                        addIssue({ fatal: false, code: 'custom', message: 'TOC is enabled but no TOC entries have been generated' });
+                    }
                     return {
                         ...data,
                         id,
