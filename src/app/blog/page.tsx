@@ -15,11 +15,14 @@ export default async function BlogPage({ searchParams }: Props) {
     const { tag } = await searchParams;
     const filteredPosts = tag
         ? getPostsByTag(tag)
-        : posts;
+        : [...posts];
+
+    const sortedPosts = filteredPosts
+        .sort((post1, post2) => -post1.created.localeCompare(post2.created));
 
     return (
         <Suspense>
-            <Blog posts={filteredPosts} />
+            <Blog posts={sortedPosts} />
         </Suspense>
     );
 }
