@@ -1,17 +1,12 @@
-import type { FC, PropsWithChildren } from 'react';
-
 import type { Post } from '#content';
 import { useMDX } from '#velite';
 
 import { Tags } from '../components/tag';
 
 import styles from './blogpost.module.scss';
+import * as mdxComponents from './components';
 import { BlogPublishTime } from './published';
 
-
-const Idea: FC<PropsWithChildren> = ({ children }) => <blockquote className={styles.idea}>{children}</blockquote>;
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const mdxComponents = { Idea };
 
 export function BlogPost({ post }: { post: Post }) {
     // eslint-disable-next-line @typescript-eslint/naming-convention
