@@ -1,14 +1,29 @@
 'use client';
+import dayjs from 'dayjs';
+import type { FC } from 'react';
+
 import type { Post } from '#content';
 
 import { formatTime } from '../../dayjs';
 
 
+const Time: FC<{ datetime: string }> = ({ datetime }) => {
+    const date$ = dayjs(datetime);
+    return (
+        <time
+            dateTime={datetime}
+            title={date$.format('LLL')}
+        >
+            {formatTime(date$)}
+        </time>
+    );
+};
+
 export function BlogPublishTime({ post }: { post: Post }) {
     return (
         <>
             {'Opublikowano: '}
-            <time dateTime={post.created}>{formatTime(post.created)}</time>
+            <Time datetime={post.created} />
             {post.created !== post.updated && (
                 <>
                     {', '}
@@ -16,7 +31,7 @@ export function BlogPublishTime({ post }: { post: Post }) {
                         zaktualizowano
                     </a>
                     {': '}
-                    <time dateTime={post.updated}>{formatTime(post.updated)}</time>
+                    <Time datetime={post.updated} />
                 </>
             )}
         </>

@@ -1,3 +1,4 @@
+import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pl';
 import dayjsLocalizedFormat from 'dayjs/plugin/localizedFormat';
@@ -10,11 +11,11 @@ dayjs.extend(dayjsRelativeTime);
 
 const showRelativeTimeIfLessThanDays = 7;
 
-export function formatTime(datetime: string) {
+export function formatTime(datetime: string | Dayjs) {
     if (!datetime && process.env.NEXT_PUBLIC_ENV !== 'development') {
         return datetime;
     }
-    const date = dayjs(datetime || new Date());
+    const date = typeof datetime === 'string' ? dayjs(datetime || new Date()) : datetime;
 
     if (dayjs().diff(date, 'days') < showRelativeTimeIfLessThanDays) {
         return date.fromNow();
