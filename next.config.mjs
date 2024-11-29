@@ -1,5 +1,9 @@
 /* eslint-disable no-undef */
 // @ts-check
+import { promises } from 'node:fs';
+import { resolve } from 'node:path';
+
+import { generateRssFeed } from './build-utils/generate-rss.js';
 
 
 /** @type {import('next').NextConfig} */
@@ -31,5 +35,8 @@ if (!process.env.VELITE_STARTED && (isDev || isBuild)) {
     // eslint-disable-next-line no-console
     console.warn = warn;
 }
+
+const posts = await promises.readFile('./.velite/posts.json', { encoding: 'utf-8' });
+await generateRssFeed(JSON.parse(posts), resolve('public/static/rss.xml'));
 
 export default nextConfig;

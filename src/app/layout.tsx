@@ -18,7 +18,10 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
     title: 'Dtrw.ovh',
-    description: 'My personal website'
+    description: 'My personal website',
+    generator: 'Next.JS, Velite',
+    alternates: { types: { 'application/rss+xml': [{ url: '/static/rss.xml', title: 'Blog RSS' }] } },
+    publisher: 'Bartosz Dotryw'
 };
 
 export default function RootLayout({
