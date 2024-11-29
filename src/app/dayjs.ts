@@ -12,7 +12,7 @@ dayjs.extend(dayjsRelativeTime);
 const showRelativeTimeIfLessThanDays = 7;
 
 export function formatTime(datetime: string | Dayjs) {
-    if (!datetime && process.env.NEXT_PUBLIC_ENV !== 'development') {
+    if (!datetime && process.env.NODE_ENV !== 'development') {
         return datetime;
     }
     const date = typeof datetime === 'string' ? dayjs(datetime || new Date()) : datetime;

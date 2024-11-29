@@ -16,7 +16,7 @@ export const useMDX = (code: string | undefined) => {
     // @ts-expect-error -- assignment
     // eslint-disable-next-line @typescript-eslint/no-implied-eval, no-new-func
     const fn: (runtime: typeof jsxRuntime | typeof jsxDevRuntime) => { default: Comp } = new Function(code);
-    const { default: RawComponent } = fn({ ...process.env.NEXT_PUBLIC_ENV === 'development' ? jsxDevRuntime : jsxRuntime });
+    const { default: RawComponent } = fn({ ...process.env.NODE_ENV === 'development' ? jsxDevRuntime : jsxRuntime });
 
     const Content: Comp = props => <RawComponent components={{ ...sharedComponents, ...props.components }} />;
 
