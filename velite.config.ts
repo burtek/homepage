@@ -41,6 +41,7 @@ export default defineConfig({
                     short: s.slug('posts-short').optional(),
                     tags: s.array(s.string()),
                     tocEnabled: s.boolean().optional(),
+                    draft: s.boolean().optional(),
 
                     created: timestamp('created'),
                     updated: timestamp('modified'),
