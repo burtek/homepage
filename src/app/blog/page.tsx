@@ -22,7 +22,10 @@ export default async function BlogPage({ searchParams }: Props) {
 
     return (
         <Suspense>
-            <Blog posts={sortedPosts} />
+            <Blog
+                posts={sortedPosts}
+                tag={tag}
+            />
         </Suspense>
     );
 }
