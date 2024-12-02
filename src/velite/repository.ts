@@ -19,4 +19,5 @@ export const getPageByName = (name: string) => {
     return found;
 };
 
+export { pages } from '../../.velite';
 export type { Page, Post } from '../../.velite';
