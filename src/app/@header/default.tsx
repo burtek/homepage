@@ -6,12 +6,13 @@ import styles from './header.module.scss';
 export default function Header() {
     return (
         <header className={styles.header}>
-            <div>
+            <div className={styles.logo}>
                 <Link href="/">Dtrw.ovh</Link>
             </div>
-            <ul>
+            <div className={styles.menu}>
                 <Link href="/blog">Blog</Link>
-            </ul>
+                <Link href="/about">O mnie</Link>
+            </div>
         </header>
     );
 }

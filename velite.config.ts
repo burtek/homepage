@@ -63,6 +63,21 @@ export default defineConfig({
                         permalink: `/blog/${id}`
                     };
                 })
+        },
+        pages: {
+            name: 'Page',
+            pattern: 'pages/*.mdx',
+            schema: s
+                .object({
+                    title: s.string(),
+
+                    name: s.path().transform(path => path.split('/')[1]),
+                    metadata: s.metadata(),
+                    excerpt: s.excerpt(),
+                    code: s.mdx(),
+                    toc: s.toc(),
+                    md: s.markdown()
+                })
         }
     },
     mdx: {

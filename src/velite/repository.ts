@@ -1,4 +1,4 @@
-import { posts as allPosts } from '../../.velite';
+import { posts as allPosts, pages } from '../../.velite';
 
 
 export const posts = allPosts
@@ -11,5 +11,12 @@ export const getPostByShort = (short: string) => posts.find(post => post.short =
 
 export const getPostsByTag = (tag: string) => posts.filter(post => post.tags.includes(tag));
 
+export const getPageByName = (name: string) => {
+    const found = pages.find(page => page.name === name);
+    if (!found) {
+        throw new Error(`PAGE ${name} NOT GENERATED!`);
+    }
+    return found;
+};
 
-export type { Post } from '../../.velite';
+export type { Page, Post } from '../../.velite';
