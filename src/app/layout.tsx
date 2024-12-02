@@ -1,3 +1,4 @@
+import { VercelToolbar } from '@vercel/toolbar/next';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
@@ -41,6 +42,7 @@ export default function RootLayout({
                     {children}
                 </main>
                 {footer}
+                {process.env.NODE_ENV === 'development' && <VercelToolbar />}
             </body>
         </html>
     );

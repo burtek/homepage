@@ -3,6 +3,8 @@
 import { promises } from 'node:fs';
 import { resolve } from 'node:path';
 
+import withVercelToolbar from '@vercel/toolbar/plugins/next';
+
 import { generateRssFeed } from './build-utils/generate-rss.js';
 
 
@@ -39,4 +41,4 @@ if (!process.env.VELITE_STARTED && (isDev || isBuild)) {
 const posts = await promises.readFile('./.velite/posts.json', { encoding: 'utf-8' });
 await generateRssFeed(JSON.parse(posts), resolve('public/static/rss.xml'));
 
-export default nextConfig;
+export default withVercelToolbar()(nextConfig);
