@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf .next .velite",
     "dev": "next dev",
-    "build": "git fetch --unshallow && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
