@@ -24,8 +24,8 @@ const timestamp = (type: 'created' | 'modified') =>
                 addIssue({ fatal: false, code: 'custom', message: '`s.timestamp()` schema will resolve the value from `git log` command' });
             }
             const { stdout } = await execAsync(command);
-            console.log(meta.path, type, JSON.stringify(stdout));
-            const date = stdout ? new Date(stdout) : new Date();
+            console.log(meta.path, type, stdout);
+            const date = stdout.trim() ? new Date(stdout.trim()) : new Date();
             return date.toISOString();
         });
 
