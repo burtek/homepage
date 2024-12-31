@@ -19,13 +19,13 @@ const timestamp = (type: 'created' | 'modified') =>
     s
         .custom<string | undefined>(i => i === undefined || typeof i === 'string')
         .transform<string>(async (value, { meta, addIssue }) => {
-            const command = `git log --format=%cI ${type === 'created' ? '--reverse' : ''} ${meta.path} | head -n1`;
+            const command = `git log --format=%cI ${type === 'created' ? '--reverse' : ''} ${meta.path}`;
             if (value) {
                 addIssue({ fatal: false, code: 'custom', message: '`s.timestamp()` schema will resolve the value from `git log` command' });
             }
             const { stdout } = await execAsync(command);
             console.log({ path: meta.path, command, type, stdout });
-            const date = stdout.trim() ? new Date(stdout.trim()) : new Date();
+            const date = stdout.trim() ? new Date(stdout.split('\n')[0]) : new Date();
             return date.toISOString();
         });
 
