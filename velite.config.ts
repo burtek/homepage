@@ -20,7 +20,7 @@ const timestamp = (type: 'created' | 'modified') =>
         .custom<string | undefined>(i => i === undefined || typeof i === 'string')
         .transform<string>(async (value, { meta, addIssue }) => {
 
-            const { stdout: s } = await execAsync(`git log --format=%cd ${meta.path}`);
+            const { stdout: s } = await execAsync(`git log --oneline -5`);
             console.log(s);            
 
             const command = `git log --format=%cd ${type === 'created' ? '--reverse' : ''} ${meta.path} | head -n1`;
