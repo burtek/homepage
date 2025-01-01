@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Clean up any existing .git folder (shallow clone)
 rm -rf .git
