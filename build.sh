@@ -12,5 +12,4 @@ git reset --hard origin/$VERCEL_GIT_COMMIT_REF
 git checkout $VERCEL_GIT_COMMIT_SHA
 
 # Proceed with the build process
-yarn
 yarn build
