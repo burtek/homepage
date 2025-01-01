@@ -12,6 +12,9 @@ export function Blog({ posts, tag }: { posts: Post[]; tag?: string }) {
     return (
         <>
             <h1 className={styles.header}>Najnowsze wpisy{tag ? ` z kategorii ${tag}` : ''}:</h1>
+            {tag
+                ? <Link href={{ query: { tag: null } }}>(pokaż wszystkie wpisy)</Link>
+                : null}
             {posts.map(post => (
                 <div
                     key={post.slug}
