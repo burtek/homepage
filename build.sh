@@ -8,7 +8,7 @@ rm -rf .git
 git init
 git remote add origin https://github.com/$VERCEL_GIT_REPO_OWNER/$VERCEL_GIT_REPO_SLUG.git
 git fetch --all
-git reset --hard origin/main
+git reset --hard origin/master
 git checkout $VERCEL_GIT_COMMIT_SHA
 
 # Proceed with the build process
