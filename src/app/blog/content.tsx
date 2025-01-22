@@ -24,7 +24,7 @@ export function Blog({ posts, tag }: { posts: Post[]; tag?: string }) {
                         <h2 className={styles.title}>{post.title}</h2>
                     </Link>
                     <p className={styles.date}>{formatTime(post.created)}</p>
-                    <p className={styles.excerpt}>{post.excerpt}...</p>
+                    <p className={styles.excerpt}>{post.ownExcerpt ?? `${post.excerpt}...`}</p>
                     <Tags tags={post.tags} />
                 </div>
             ))}

@@ -43,6 +43,7 @@ export default defineConfig({
                     tags: s.array(s.string()),
                     tocEnabled: s.boolean().optional(),
                     draft: s.boolean().optional(),
+                    ownExcerpt: s.string().optional(),
 
                     created: timestamp('created'),
                     updated: timestamp('modified'),
