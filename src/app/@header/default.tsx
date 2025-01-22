@@ -11,6 +11,7 @@ export default function Header() {
             </div>
             <div className={styles.menu}>
                 <Link href="/blog">Blog</Link>
+                <Link href="/zagle">Linki żeglarskie</Link>
                 <Link href="/about">O mnie</Link>
             </div>
         </header>
