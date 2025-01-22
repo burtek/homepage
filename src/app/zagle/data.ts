@@ -75,27 +75,20 @@ export const data: Datum[] = [
                 star: true
             },
             {
-                link: 'https://marinaguide.adac.de/marinas',
-                linkdesc: 'https://marinaguide.adac.de/',
+                link: 'https://skipper.adac.de/en/marinas/',
+                linkdesc: 'https://skipper.adac.de/',
                 desc: {
                     marineType: 'morskie i śródlądowe',
-                    area: 'Europa i terytoria krajów europejskich'
+                    area: `Europa, Karaiby ${portInfoAdditional}`
                 },
                 star: true
             },
             {
-                link: 'http://www.svenskagasthamnar.se/se/sok-via-karta',
-                linkdesc: 'http://www.svenskagasthamnar.se/',
+                link: 'https://www.svenskagasthamnar.se/se/sok-via-karta',
+                linkdesc: 'https://www.svenskagasthamnar.se/',
                 desc: {
                     marineType: 'morskie i śródlądowe',
                     area: 'Szwecja i wyspy szwedzkie'
-                }
-            },
-            {
-                link: 'http://marinasguide.com.au',
-                desc: {
-                    marineType: 'morskie i śródlądowe',
-                    area: `Australia i Oceania ${portInfoAdditional}`
                 }
             },
             {
@@ -107,39 +100,7 @@ export const data: Datum[] = [
                 }
             },
             {
-                link: 'https://marina-guide.de/advanced-search/',
-                linkdesc: 'https://marina-guide.de/',
-                desc: {
-                    marineType: 'morskie i śródlądowe',
-                    area: `Europa i terytoria krajów europejskich ${portInfoAdditional}`
-                },
-                mobile: [
-                    {
-                        type: 'android',
-                        id: 'de.stasch.marina_guide'
-                    },
-                    {
-                        type: 'ios',
-                        id: 'marina-guide/id1133291133'
-                    }
-                ]
-            },
-            {
-                link: 'http://marinas.pboextra.co.uk',
-                desc: {
-                    marineType: 'morskie i śródlądowe',
-                    area: 'Wyspy Brytyjskie'
-                },
-                more: [
-                    {
-                        desc: 'Mapa',
-                        linkdesc: '/charts.php',
-                        link: 'http://marinas.pboextra.co.uk/charts.php'
-                    }
-                ]
-            },
-            {
-                link: 'http://www.danskehavnelods.dk',
+                link: 'https://www.danskehavnelods.dk',
                 desc: {
                     marineType: 'morskie i śródlądowe',
                     area: 'Dania'
@@ -158,6 +119,21 @@ export const data: Datum[] = [
                         link: 'https://marinas.com/map?lat=55.29191668658319&lon=4.807571007164512&zoom=3.315265552181933'
                     }
                 ]
+            },
+            {
+                link: 'https://greek-marinas.gr/en/marina-listings/',
+                linkdesc: 'https://greek-marinas.gr/',
+                desc: {
+                    marineType: 'morskie',
+                    area: 'Grecja'
+                }
+            },
+            {
+                link: 'https://mymarinaguide.com',
+                desc: {
+                    marineType: 'morskie i śródlądowe',
+                    area: 'Australia'
+                }
             }
         ]
     },
