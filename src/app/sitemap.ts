@@ -24,6 +24,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: 'weekly',
             priority: 0.8
         },
+        {
+            url: 'https://dtrw.ovh/zagle',
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.5
+        },
+        {
+            url: 'https://dtrw.ovh/about',
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.5
+        },
         ...posts.map<MetadataRoute.Sitemap[number]>(post => ({
             url: `https://dtrw.ovh/blog/${post.id}`,
             lastModified: new Date(),
